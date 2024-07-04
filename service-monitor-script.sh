@@ -1,8 +1,8 @@
 #!/bin/bash
 
 USERNAME=mysql_user
-NODES=("10.128.1.52" "10.128.1.73" "10.128.1.90")
-PROJECT_ID="salesmate-io"
+NODES=("10.1.1.1" "10.1.1.2" "10.1.1.2")
+PROJECT_ID="mitesh-gangaramani-test"
 
 # Configuration
 today=$(date +%Y-%m-%d)
@@ -25,7 +25,7 @@ check_mysql_service() {
         echo "MySQL service is not active on $node. Triggering Zenduty alert."
 
         # Trigger Zenduty alert
-        curl -X POST https://www.zenduty.com/api/events/f12ee444-3dc2-4f76-bd43-705512b88d6d/ \
+        curl -X POST https://www.zenduty.com/api/events/API-key/ \
              -H 'Content-Type: application/json' \
              -d "{\"alert_type\":\"critical\", \"message\":\"CRITICAL MySQL Service is not active for $node.\", \"summary\":\"Please check the issue.\", \"entity_id\":\"$today-$time\"}"
     else

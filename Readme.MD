@@ -1,4 +1,4 @@
-![Getting Started](./sequence-diagram-of-article.png)
+![kubernetes-cronjob-monitor-linux-service-with-phone-call-alert-sequence-diagram](./sequence-diagram-of-article.png)
 
 This script will check the mysql service on each mysql servers at regular intervals and will trigger a zenduty call if the service has any other
 status like failed, activating, disabled etc.
@@ -23,7 +23,7 @@ kubectl create secret generic mysql-secret-keys --from-file=~/.ssh/id_rsa_k8s_cr
 ## Create the script configmap
 
 ```
-kubectl create configmap mysql-monitoring-configmap --from-file=service-monitor-script.sh -n prod-backend
+kubectl create configmap mysql-monitoring-configmap --from-file=service-monitor-script.sh -n mitesh-test
 ```
 
 ## Create the cronjob with desired schedule
