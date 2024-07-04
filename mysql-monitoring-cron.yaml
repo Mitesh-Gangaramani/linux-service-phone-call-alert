@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mysql-monitoring-cronjob
+  namespace: prod-backend
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+    spec:
+      template:
+        metadata:
+        spec:
+          containers:
+          - command:
+            - /bin/bash
+            - -c
+            - /script/service-monitor-script.sh
+            image: gcr.io/salesmate-io/gcloud-sdk:3
+            imagePullPolicy: IfNotPresent
+            name: mysql-backup-container
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /script
+              name: script-config
+            - mountPath: /mnt
+              name: ssh-key-secret
+              readOnly: true
+          dnsPolicy: ClusterFirst
+          restartPolicy: Never
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 0
+          volumes:
+          - configMap:
+              defaultMode: 511
+              name: mysql-monitoring-configmap
+            name: script-config
+          - name: ssh-key-secret
+            secret:
+              defaultMode: 256
+              secretName: mysql-secret-keys
+  schedule: "*/15 * * * *"
+  successfulJobsHistoryLimit: 3
+  suspend: false
