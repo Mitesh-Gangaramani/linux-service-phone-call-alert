@@ -17,7 +17,7 @@ spec:
             - /bin/bash
             - -c
             - /script/service-monitor-script.sh
-            image: gcr.io/test-project/gcloud-sdk:3
+            image: gcr.io/test-project/alpine:mitesh-test
             imagePullPolicy: IfNotPresent
             name: mysql-backup-container
             resources: {}
