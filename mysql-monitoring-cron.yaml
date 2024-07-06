@@ -17,7 +17,7 @@ spec:
             - /bin/bash
             - -c
             - /script/service-monitor-script.sh
-            image: gcr.io/test-project/alpine:mitesh-test
+            image: miteshgangaramani928/mitesh-alpine
             imagePullPolicy: IfNotPresent
             name: mysql-backup-container
             resources: {}
