@@ -10,6 +10,8 @@ This guide will walk you through setting up a system that ensures your MySQL ser
 
 1. git,kubectl,gcloud should be installed on your machine
 2. compute engine and kubernetes engine access to your GCP user
+3. GKE cluster
+4. Comptute engine instance
 
 Let's get started with each step, one by one!
 
